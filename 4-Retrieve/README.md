@@ -1,10 +1,12 @@
 # hackademia-2025
 Repo pour le projet RefCheck de HackademIA 2025
 
-## Librairies utiles
+## Bases de données pour obtenir les métadonnées
 
-* pyPDF
-* scholarly 
+* CrossRef : DOI
+* PubMed : PMID
+* ArXiv : ArXivID
+* OpenAlex : PID 
 
 ## CrossRef structure :
 DOI

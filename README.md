@@ -12,3 +12,6 @@ Repo pour le projet RefCheck de HackademIA 2025
 ## Source d'inspiration
 
 * https://github.com/ykangw/VeriExCiting
+* https://github.com/markrussinovich/refchecker
+* https://github.com/kevinwu23/SourceCheckup
+
