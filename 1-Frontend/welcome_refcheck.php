@@ -175,7 +175,7 @@ $user_mail = isset($_SERVER['mail']) ? strtolower($_SERVER['mail']) : '';
         }
 
         .how-it-works h2 {
-            color: #333;
+            color: #ffffffff;
             font-size: 28px;
             margin-bottom: 30px;
             text-align: center;
@@ -206,7 +206,7 @@ $user_mail = isset($_SERVER['mail']) ? strtolower($_SERVER['mail']) : '';
         }
 
         .step h3 {
-            color: #333;
+            color: #ffffffff;
             font-size: 16px;
             margin-bottom: 10px;
         }
