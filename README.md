@@ -1,6 +1,8 @@
 # hackademia-2025
 Repo pour le projet RefCheck de HackademIA 2025
 
-## Sources d'inspiration
+## Librairies utiles
 
-1. https://github.com/ykangw/VeriExCiting
+* pyPDF
+* scholarly 
+
