@@ -8,6 +8,56 @@ import pdfplumber
 from typing import List, Dict, Optional
 
 
+def count_references(pdf_path: str, start_keywords: Optional[List[str]] = None) -> int:
+    """
+    Compte rapidement le nombre de références bibliographiques sans extraire tout le document.
+    
+    Args:
+        pdf_path: Chemin vers le fichier PDF
+        start_keywords: Mots-clés pour identifier le début de la bibliographie
+    
+    Returns:
+        Nombre de références trouvées
+    """
+    if start_keywords is None:
+        start_keywords = ["références", "bibliographie", "references", "bibliography"]
+    
+    bibliography_started = False
+    reference_count = 0
+    
+    with pdfplumber.open(pdf_path) as pdf:
+        for page in pdf.pages:
+            text = page.extract_text()
+            if not text:
+                continue
+            
+            lines = text.split('\n')
+            
+            for line in lines:
+                line = line.strip()
+                if not line:
+                    continue
+                
+                # Détecter le début de la bibliographie
+                if not bibliography_started:
+                    if any(keyword.lower() in line.lower() for keyword in start_keywords):
+                        bibliography_started = True
+                        continue
+                
+                # Si la bibliographie a commencé, compter les références
+                if bibliography_started:
+                    # Détecter les lignes qui commencent par un numéro (début d'une référence)
+                    # Patterns: "1. ", "1) ", "[1] ", etc.
+                    if re.match(r'^\d+[\.\)]?\s+', line) or re.match(r'^\[\d+\]\s+', line):
+                        reference_count += 1
+                    # Si on trouve un titre de section suivant (tout en majuscules, court)
+                    elif line.isupper() and len(line.split()) <= 3 and reference_count > 0:
+                        # Probablement une nouvelle section, on arrête
+                        break
+    
+    return reference_count
+
+
 def extract_bibliography(pdf_path: str, start_keywords: Optional[List[str]] = None) -> List[str]:
     """
     Extrait les références bibliographiques d'un document PDF.
@@ -235,19 +285,37 @@ if __name__ == "__main__":
     import sys
     
     if len(sys.argv) < 2:
-        print("Usage: python extract_bibliography.py <pdf_file>")
+        print("Usage: python extract_bibliography.py <pdf_file> [--count-only]")
+        print("\nOptions:")
+        print("  --count-only    Compter seulement le nombre de références sans extraire")
         sys.exit(1)
     
     pdf_file = sys.argv[1]
+    count_only = "--count-only" in sys.argv or "--count" in sys.argv
     
-    print(f"Extraction de la bibliographie depuis {pdf_file}...")
-    references = extract_bibliography(pdf_file)
-    
-    print(f"\n{len(references)} références trouvées.\n")
-    print("=" * 80)
-    print("JSON généré:\n")
-    print("=" * 80)
-    
-    json_output = convert_to_json_output(references)
-    print(json_output)
+    if count_only:
+        print(f"Comptage rapide des références dans {pdf_file}...")
+        count = count_references(pdf_file)
+        print(f"\n{'='*80}")
+        print(f"📊 NOMBRE DE RÉFÉRENCES TROUVÉES: {count}")
+        print(f"{'='*80}")
+        
+        if count == 0:
+            print("\n⚠️  Aucune référence trouvée.")
+            print("Vérifiez que le PDF contient une section 'Bibliographie' ou 'Références'.")
+        else:
+            print(f"\n✅ Le document contient {count} référence(s) bibliographique(s).")
+            print("\n💡 Pour extraire le contenu complet en JSON, utilisez:")
+            print(f"   python extract_bibliography.py {pdf_file}")
+    else:
+        print(f"Extraction de la bibliographie depuis {pdf_file}...")
+        references = extract_bibliography(pdf_file)
+        
+        print(f"\n{len(references)} références trouvées.\n")
+        print("=" * 80)
+        print("JSON généré:\n")
+        print("=" * 80)
+        
+        json_output = convert_to_json_output(references)
+        print(json_output)
 
