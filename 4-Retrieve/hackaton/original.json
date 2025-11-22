@@ -1,80 +1,152 @@
 [
   {
-    "entry_key": "jordan1986an",
+    "entry_key": "Nelson2025",
     "original": {
-      "author": "Kirk E Jordan and Gerard R Richter and Ping Sheng",
-      "month": "3",
-      "year": "1986",
-      "journal": "Journal of Computational Physics",
-      "doi": "10.1016/0021-9991(86)90093-8",
-      "url": "http://dx.doi.org/10.1016/0021-9991(86)90093-8",
-      "publisher": "Elsevier BV",
-      "page": "222-235",
-      "issue": "1",
-      "volume": "63",
-      "title": "An efficient numerical evaluation of the Green's function for the Helmholtz operator on periodic structures",
+      "url": "https://doi.org/10.1080/09505431.2025.2473882",
+      "doi": "10.1080/09505431.2025.2473882",
+      "year": "2025",
+      "journal": "Science as Culture",
+      "title": "Mammoths and tigers and rhinos, oh my: mapping de-extinction species and networks",
+      "author": "Avey Nelson and Kate O\u2019Riordan",
       "ENTRYTYPE": "article",
-      "ID": "jordan1986an"
+      "ID": "Nelson2025"
     },
     "id_type": "doi",
-    "identifier": "10.1016/0021-9991(86)90093-8"
+    "identifier": "10.1080/09505431.2025.2473882"
   },
   {
-    "entry_key": "chaumet2007coupled",
+    "entry_key": "Thompson2025",
     "original": {
-      "author": "Patrick C. Chaumet and C. Billaudeau",
-      "month": "1",
-      "year": "2007",
-      "journal": "Journal of Applied Physics",
-      "doi": "10.1063/1.2409490",
-      "url": "http://dx.doi.org/10.1063/1.2409490",
-      "publisher": "AIP Publishing",
-      "page": "023106",
-      "issue": "2",
-      "volume": "101",
-      "title": "Coupled dipole method to compute optical torque: Application to a micropropeller",
+      "url": "https://doi.org/10.1016/j.cell.2025.10.025",
+      "doi": "10.1016/j.cell.2025.10.025",
+      "year": "2025",
+      "journal": "Cell",
+      "title": "Woolly mammoth RNA extracted and sequenced",
+      "author": "Tosin Thompson",
       "ENTRYTYPE": "article",
-      "ID": "chaumet2007coupled"
+      "ID": "Thompson2025"
     },
     "id_type": "doi",
-    "identifier": "10.1063/1.2409490"
+    "identifier": "10.1016/j.cell.2025.10.025"
   },
   {
-    "entry_key": "2016observation",
+    "entry_key": "Palkopoulou2015",
     "original": {
-      "month": "2",
-      "year": "2016",
-      "journal": "Physical Review Letters",
-      "doi": "10.1103/physrevlett.116.061102",
-      "url": "http://dx.doi.org/10.1103/PhysRevLett.116.061102",
-      "publisher": "American Physical Society (APS)",
-      "issue": "6",
-      "volume": "116",
-      "title": "Observation of Gravitational Waves from a Binary Black Hole Merger",
+      "url": "https://doi.org/10.1016/j.cub.2015.04.007",
+      "doi": "10.1016/j.cub.2015.04.007",
+      "year": "2015",
+      "journal": "Current Biology",
+      "title": "Complete genomes reveal signatures of demographic and genetic declines in the woolly mammoth",
+      "author": "E. Palkopoulou and S. Mallick and P. Skoglund et al.",
       "ENTRYTYPE": "article",
-      "ID": "2016observation"
+      "ID": "Palkopoulou2015"
     },
     "id_type": "doi",
-    "identifier": "10.1103/physrevlett.116.061102"
+    "identifier": "10.1016/j.cub.2015.04.007"
   },
   {
-    "entry_key": "arute2019quantum",
+    "entry_key": "Lynch2015",
     "original": {
-      "author": "Frank Arute and Kunal Arya and Ryan Babbush and Dave Bacon and Joseph C. Bardin and Rami Barends and Rupak Biswas and Sergio Boixo and Fernando G. S. L. Brandao and David A. Buell and Brian Burkett and Yu Chen and Zijun Chen and Ben Chiaro and Roberto Collins and William Courtney and Andrew Dunsworth and Edward Farhi and Brooks Foxen and Austin Fowler and Craig Gidney and Marissa Giustina and Rob Graff and Keith Guerin and Steve Habegger and Matthew P. Harrigan and Michael J. Hartmann and Alan Ho and Markus Hoffmann and Trent Huang and Travis S. Humble and Sergei V. Isakov and Evan Jeffrey and Zhang Jiang and Dvir Kafri and Kostyantyn Kechedzhi and Julian Kelly and Paul V. Klimov and Sergey Knysh and Alexander Korotkov and Fedor Kostritsa and David Landhuis and Mike Lindmark and Erik Lucero and Dmitry Lyakh and Salvatore Mandr\u00e0 and Jarrod R. McClean and Matthew McEwen and Anthony Megrant and Xiao Mi and Kristel Michielsen and Masoud Mohseni and Josh Mutus and Ofer Naaman and Matthew Neeley and Charles Neill and Murphy Yuezhen Niu and Eric Ostby and Andre Petukhov and John C. Platt and Chris Quintana and Eleanor G. Rieffel and Pedram Roushan and Nicholas C. Rubin and Daniel Sank and Kevin J. Satzinger and Vadim Smelyanskiy and Kevin J. Sung and Matthew D. Trevithick and Amit Vainsencher and Benjamin Villalonga and Theodore White and Z. Jamie Yao and Ping Yeh and Adam Zalcman and Hartmut Neven and John M. Martinis",
-      "month": "10",
-      "year": "2019",
+      "url": "https://doi.org/10.1016/j.celrep.2015.04.027",
+      "doi": "10.1016/j.celrep.2015.04.027",
+      "year": "2015",
+      "journal": "Cell Reports",
+      "title": "Elephantid genomes reveal the molecular bases of woolly mammoth adaptations to the Arctic",
+      "author": "V. J. Lynch and R. D. Kemp and G. B. Matheus",
+      "ENTRYTYPE": "article",
+      "ID": "Lynch2015"
+    },
+    "id_type": "doi",
+    "identifier": "10.1016/j.celrep.2015.04.027"
+  },
+  {
+    "entry_key": "Palkopoulou2018",
+    "original": {
+      "url": "https://doi.org/10.1073/pnas.1720554115",
+      "doi": "10.1073/pnas.1720554115",
+      "year": "2018",
+      "journal": "Proceedings of the National Academy of Sciences",
+      "title": "A comprehensive genomic history of extinct and living elephants",
+      "author": "E. Palkopoulou and M. Lipson and S. Mallick et al.",
+      "ENTRYTYPE": "article",
+      "ID": "Palkopoulou2018"
+    },
+    "id_type": "doi",
+    "identifier": "10.1073/pnas.1720554115"
+  },
+  {
+    "entry_key": "Dal\u00e9n2012",
+    "original": {
+      "url": "https://doi.org/10.1038/nature10530",
+      "doi": "10.1038/nature10530",
+      "year": "2012",
       "journal": "Nature",
-      "doi": "10.1038/s41586-019-1666-5",
-      "url": "http://dx.doi.org/10.1038/s41586-019-1666-5",
-      "publisher": "Springer Science and Business Media LLC",
-      "page": "505-510",
-      "issue": "7779",
-      "volume": "574",
-      "title": "Quantum supremacy using a programmable superconducting processor",
+      "title": "Partial genome recovery of the woolly mammoth",
+      "author": "L. Dal\u00e9n and K. Nystrom and A. Valdiosera et al.",
       "ENTRYTYPE": "article",
-      "ID": "arute2019quantum"
+      "ID": "Dal\u00e9n2012"
     },
     "id_type": "doi",
-    "identifier": "10.1038/s41586-019-1666-5"
+    "identifier": "10.1038/nature10530"
+  },
+  {
+    "entry_key": "Rogers2019",
+    "original": {
+      "url": "https://doi.org/10.1038/s41559-019-0839-y",
+      "doi": "10.1038/s41559-019-0839-y",
+      "year": "2019",
+      "journal": "Nature Ecology & Evolution",
+      "title": "Genomic evidence for population collapse in a critically endangered mammoth population",
+      "author": "R. L. Rogers and D. J. Slatkin",
+      "ENTRYTYPE": "article",
+      "ID": "Rogers2019"
+    },
+    "id_type": "doi",
+    "identifier": "10.1038/s41559-019-0839-y"
+  },
+  {
+    "entry_key": "Poinar2006",
+    "original": {
+      "url": "https://doi.org/10.1126/science.1123360",
+      "doi": "10.1126/science.1123360",
+      "year": "2006",
+      "journal": "Science",
+      "title": "Metagenomics to paleogenomics: large-scale sequencing of mammoth DNA",
+      "author": "H. N. Poinar and C. Schwarz and J. Qi et al.",
+      "ENTRYTYPE": "article",
+      "ID": "Poinar2006"
+    },
+    "id_type": "doi",
+    "identifier": "10.1126/science.1123360"
+  },
+  {
+    "entry_key": "Shapiro2015",
+    "original": {
+      "url": "https://doi.org/10.1515/9781400865482",
+      "doi": "10.1515/9781400865482",
+      "year": "2015",
+      "journal": "Princeton University Press",
+      "title": "How to clone a mammoth: the science of de-extinction",
+      "author": "Beth Shapiro",
+      "ENTRYTYPE": "article",
+      "ID": "Shapiro2015"
+    },
+    "id_type": "doi",
+    "identifier": "10.1515/9781400865482"
+  },
+  {
+    "entry_key": "Lynch2017",
+    "original": {
+      "url": "https://doi.org/10.1038/ng.3863",
+      "doi": "10.1038/ng.3863",
+      "year": "2017",
+      "journal": "Nature Genetics",
+      "title": "Resurrecting woolly mammoth hemoglobin",
+      "author": "V. J. Lynch and G. B. Matheus",
+      "ENTRYTYPE": "article",
+      "ID": "Lynch2017"
+    },
+    "id_type": "doi",
+    "identifier": "10.1038/ng.3863"
   }
 ]
