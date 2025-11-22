@@ -150,3 +150,4 @@ if ($page == 'refcheck') {
 }
 
 echo "		<div class=\"col-md-12\">\n";
+?>

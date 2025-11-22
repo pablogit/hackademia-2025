@@ -1,0 +1,127 @@
+version: '3.8'
+
+services:
+  # Frontend PHP
+  refcheck-frontend:
+    build:
+      context: ./1-Frontend/exemple_biblio
+      dockerfile: Dockerfile
+    container_name: refcheck-frontend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./1-Frontend/exemple_biblio:/var/www/html
+      - ./1-Frontend/exemple_biblio/uploads:/var/www/html/uploads
+      - ./1-Frontend/exemple_biblio/logs:/var/www/html/logs
+    environment:
+      - BACKEND_URL=http://refcheck-backend:5000/api
+      - DEBUG_MODE=false
+      - ENVIRONMENT=production
+    depends_on:
+      - refcheck-backend
+    networks:
+      - refcheck-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/welcome_refcheck.php"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Backend Python
+  refcheck-backend:
+    build:
+      context: ./2-Extraction
+      dockerfile: Dockerfile
+    container_name: refcheck-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./2-Extraction:/app
+      - ./3-Parsing:/app/parsing
+      - ./4-Retrieve:/app/retrieve
+      - ./5-Compare:/app/compare
+    environment:
+      - FLASK_ENV=production
+      - PYTHONUNBUFFERED=1
+    networks:
+      - refcheck-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # PostgreSQL (optionnel)
+  refcheck-db:
+    image: postgres:13
+    container_name: refcheck-db
+    environment:
+      - POSTGRES_USER=refcheck
+      - POSTGRES_PASSWORD=refcheck_secure_password
+      - POSTGRES_DB=refcheck_db
+    volumes:
+      - refcheck-db-data:/var/lib/postgresql/data
+    networks:
+      - refcheck-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U refcheck"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis (optionnel - pour cache)
+  refcheck-cache:
+    image: redis:7-alpine
+    container_name: refcheck-cache
+    ports:
+      - "6379:6379"
+    volumes:
+      - refcheck-cache-data:/data
+    networks:
+      - refcheck-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Nginx Reverse Proxy
+  refcheck-proxy:
+    image: nginx:alpine
+    container_name: refcheck-proxy
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - refcheck-frontend
+      - refcheck-backend
+    networks:
+      - refcheck-network
+    restart: unless-stopped
+
+volumes:
+  refcheck-db-data:
+    driver: local
+  refcheck-cache-data:
+    driver: local
+
+networks:
+  refcheck-network:
+    driver: bridge
+
+# Usage:
+# docker-compose up -d                 # Démarrer tous les services
+# docker-compose ps                    # Voir l'état
+# docker-compose logs -f refcheck-frontend  # Voir les logs
+# docker-compose down                  # Arrêter tous les services
+# docker-compose exec refcheck-frontend bash  # Accéder au shell

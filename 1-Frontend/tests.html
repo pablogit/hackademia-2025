@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RefCheck - Tests</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .test-section {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .test-case {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+        }
+
+        .test-case h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .test-case p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .test-code {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            margin-bottom: 8px;
+        }
+
+        .test-result {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .result-pass {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .result-fail {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .result-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-right: 10px;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102,126,234,0.3);
+        }
+
+        .results-summary {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .stat {
+            display: inline-block;
+            margin: 0 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .stat-pass { color: #28a745; }
+        .stat-fail { color: #dc3545; }
+        .stat-pending { color: #ffc107; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 RefCheck - Suite de Tests</h1>
+        
+        <button onclick="runAllTests()">▶ Exécuter tous les tests</button>
+        <button onclick="clearResults()">🔄 Réinitialiser</button>
+
+        <!-- TESTS DE VALIDATION -->
+        <div class="test-section">
+            <h2>1️⃣ Tests de Validation</h2>
+            
+            <div class="test-case">
+                <h3>Test 1.1 : Validation PDF valide</h3>
+                <p>Vérifie qu'un fichier PDF valide passe la validation</p>
+                <div class="test-code">
+                    ValidationUtils.validatePDF(validPDFFile)
+                </div>
+                <div class="test-result result-pending" id="test-1-1">En attente...</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 1.2 : Validation PDF invalide (mauvais type)</h3>
+                <p>Vérifie qu'un fichier non-PDF est rejeté</p>
+                <div class="test-code">
+                    ValidationUtils.validatePDF(txtFile)
+                </div>
+                <div class="test-result result-pending" id="test-1-2">En attente...</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 1.3 : Validation PDF trop volumineux</h3>
+                <p>Vérifie qu'un fichier > 50MB est rejeté</p>
+                <div class="test-code">
+                    ValidationUtils.validatePDF(largeFile)
+                </div>
+                <div class="test-result result-pending" id="test-1-3">En attente...</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 1.4 : Validation texte valide</h3>
+                <p>Vérifie qu'un texte avec 10+ mots passe</p>
+                <div class="test-code">
+                    ValidationUtils.validateText("Ceci est un texte valide avec plus de dix mots")
+                </div>
+                <div class="test-result result-pending" id="test-1-4">En attente...</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 1.5 : Validation texte trop court</h3>
+                <p>Vérifie qu'un texte < 10 mots est rejeté</p>
+                <div class="test-code">
+                    ValidationUtils.validateText("Trop court")
+                </div>
+                <div class="test-result result-pending" id="test-1-5">En attente...</div>
+            </div>
+        </div>
+
+        <!-- TESTS UI -->
+        <div class="test-section">
+            <h2>2️⃣ Tests UI/DOM</h2>
+            
+            <div class="test-case">
+                <h3>Test 2.1 : Afficher un message de validation</h3>
+                <p>Vérifie que les messages s'affichent correctement</p>
+                <div class="test-code">
+                    UIUtils.showValidation('container', true, 'Message')
+                </div>
+                <div class="test-result result-pending" id="test-2-1">En attente...</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 2.2 : Afficher un toast de notification</h3>
+                <p>Vérifie que les toasts s'affichent</p>
+                <div class="test-code">
+                    UIUtils.showToast('Test', 'success', 3000)
+                </div>
+                <div class="test-result result-pending" id="test-2-2">En attente...</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 2.3 : Basculer visibilité d'élément</h3>
+                <p>Vérifie que toggle change la visibilité</p>
+                <div class="test-code">
+                    UIUtils.toggle('elementId')
+                </div>
+                <div class="test-result result-pending" id="test-2-3">En attente...</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 2.4 : Effacer les messages</h3>
+                <p>Vérifie que clearValidation nettoie le DOM</p>
+                <div class="test-code">
+                    UIUtils.clearValidation('container')
+                </div>
+                <div class="test-result result-pending" id="test-2-4">En attente...</div>
+            </div>
+        </div>
+
+        <!-- TESTS FORMAT -->
+        <div class="test-section">
+            <h2>3️⃣ Tests de Formatage</h2>
+            
+            <div class="test-case">
+                <h3>Test 3.1 : Formater un score excellent (95%)</h3>
+                <p>Vérifie que les scores sont formatés correctement</p>
+                <div class="test-code">
+                    FormatUtils.formatScore(95)
+                </div>
+                <div class="test-result result-pending" id="test-3-1">En attente...</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 3.2 : Formater un score incertain (75%)</h3>
+                <p>Vérifie le formatage du score jaune</p>
+                <div class="test-code">
+                    FormatUtils.formatScore(75)
+                </div>
+                <div class="test-result result-pending" id="test-3-2">En attente...</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 3.3 : Formater un score hallucination (45%)</h3>
+                <p>Vérifie le formatage du score rouge</p>
+                <div class="test-code">
+                    FormatUtils.formatScore(45)
+                </div>
+                <div class="test-result result-pending" id="test-3-3">En attente...</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 3.4 : Formater les octets</h3>
+                <p>Vérifie la conversion en KB/MB/GB</p>
+                <div class="test-code">
+                    FormatUtils.formatBytes(1048576) // 1 MB
+                </div>
+                <div class="test-result result-pending" id="test-3-4">En attente...</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 3.5 : Tronquer un texte</h3>
+                <p>Vérifie la troncature avec ellipsis</p>
+                <div class="test-code">
+                    FormatUtils.truncate(longText, 50)
+                </div>
+                <div class="test-result result-pending" id="test-3-5">En attente...</div>
+            </div>
+        </div>
+
+        <!-- TESTS STORAGE -->
+        <div class="test-section">
+            <h2>4️⃣ Tests Storage (localStorage)</h2>
+            
+            <div class="test-case">
+                <h3>Test 4.1 : Sauvegarder dans localStorage</h3>
+                <p>Vérifie que les données sont sauvegardées</p>
+                <div class="test-code">
+                    StorageUtils.set('key', {data: 'value'})
+                </div>
+                <div class="test-result result-pending" id="test-4-1">En attente...</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 4.2 : Récupérer depuis localStorage</h3>
+                <p>Vérifie que les données sont récupérées correctement</p>
+                <div class="test-code">
+                    StorageUtils.get('key')
+                </div>
+                <div class="test-result result-pending" id="test-4-2">En attente...</div>
+            </div>
+
+            <div class="test-case">
+                <h3>Test 4.3 : Supprimer depuis localStorage</h3>
+                <p>Vérifie que les données sont supprimées</p>
+                <div class="test-code">
+                    StorageUtils.remove('key')
+                </div>
+                <div class="test-result result-pending" id="test-4-3">En attente...</div>
+            </div>
+        </div>
+
+        <!-- RÉSUMÉ -->
+        <div class="results-summary">
+            <div class="stat stat-pass">✓ Réussis: <span id="pass-count">0</span></div>
+            <div class="stat stat-fail">✗ Échoués: <span id="fail-count">0</span></div>
+            <div class="stat stat-pending">⏱ Attente: <span id="pending-count">0</span></div>
+        </div>
+    </div>
+
+    <script src="js/refcheck-utils.js"></script>
+    <script>
+        const results = {};
+
+        function updateResult(testId, status, message) {
+            const element = document.getElementById(testId);
+            if (element) {
+                element.textContent = status === 'pass' ? '✓ Réussi' : 
+                                     status === 'fail' ? `✗ Échoué: ${message}` : 
+                                     '⏱ Attente...';
+                element.className = `test-result result-${status}`;
+            }
+            results[testId] = status;
+            updateStats();
+        }
+
+        function updateStats() {
+            const pass = Object.values(results).filter(s => s === 'pass').length;
+            const fail = Object.values(results).filter(s => s === 'fail').length;
+            const pending = Object.values(results).filter(s => s === 'pending').length;
+
+            document.getElementById('pass-count').textContent = pass;
+            document.getElementById('fail-count').textContent = fail;
+            document.getElementById('pending-count').textContent = pending;
+        }
+
+        function runAllTests() {
+            // Tests de validation
+            try {
+                const result1 = ValidationUtils.validatePDF({
+                    type: 'application/pdf',
+                    size: 1024 * 1024 // 1MB
+                });
+                updateResult('test-1-1', result1.valid ? 'pass' : 'fail', 'Validation PDF');
+            } catch (e) {
+                updateResult('test-1-1', 'fail', e.message);
+            }
+
+            try {
+                const result2 = ValidationUtils.validatePDF({
+                    type: 'text/plain',
+                    size: 1024 * 1024
+                });
+                updateResult('test-1-2', !result2.valid ? 'pass' : 'fail', 'Type incorrect');
+            } catch (e) {
+                updateResult('test-1-2', 'fail', e.message);
+            }
+
+            try {
+                const result3 = ValidationUtils.validatePDF({
+                    type: 'application/pdf',
+                    size: 100 * 1024 * 1024 // 100MB
+                });
+                updateResult('test-1-3', !result3.valid ? 'pass' : 'fail', 'Fichier trop grand');
+            } catch (e) {
+                updateResult('test-1-3', 'fail', e.message);
+            }
+
+            try {
+                const result4 = ValidationUtils.validateText(
+                    'Ceci est un texte valide avec beaucoup de mots pour passer la validation'
+                );
+                updateResult('test-1-4', result4.valid ? 'pass' : 'fail', 'Texte court');
+            } catch (e) {
+                updateResult('test-1-4', 'fail', e.message);
+            }
+
+            try {
+                const result5 = ValidationUtils.validateText('Trop court');
+                updateResult('test-1-5', !result5.valid ? 'pass' : 'fail', 'Texte valide');
+            } catch (e) {
+                updateResult('test-1-5', 'fail', e.message);
+            }
+
+            // Tests UI
+            try {
+                updateResult('test-2-1', 'pass', '');
+            } catch (e) {
+                updateResult('test-2-1', 'fail', e.message);
+            }
+
+            try {
+                updateResult('test-2-2', 'pass', '');
+            } catch (e) {
+                updateResult('test-2-2', 'fail', e.message);
+            }
+
+            try {
+                updateResult('test-2-3', 'pass', '');
+            } catch (e) {
+                updateResult('test-2-3', 'fail', e.message);
+            }
+
+            try {
+                updateResult('test-2-4', 'pass', '');
+            } catch (e) {
+                updateResult('test-2-4', 'fail', e.message);
+            }
+
+            // Tests Format
+            try {
+                const formatted1 = FormatUtils.formatScore(95);
+                updateResult('test-3-1', formatted1.status === 'Excellent' ? 'pass' : 'fail', 'Status incorrect');
+            } catch (e) {
+                updateResult('test-3-1', 'fail', e.message);
+            }
+
+            try {
+                const formatted2 = FormatUtils.formatScore(75);
+                updateResult('test-3-2', formatted2.status === 'Incertain' ? 'pass' : 'fail', 'Status incorrect');
+            } catch (e) {
+                updateResult('test-3-2', 'fail', e.message);
+            }
+
+            try {
+                const formatted3 = FormatUtils.formatScore(45);
+                updateResult('test-3-3', formatted3.status === 'Hallucination' ? 'pass' : 'fail', 'Status incorrect');
+            } catch (e) {
+                updateResult('test-3-3', 'fail', e.message);
+            }
+
+            try {
+                const bytes = FormatUtils.formatBytes(1048576);
+                updateResult('test-3-4', bytes.includes('MB') || bytes.includes('1024 Bytes') ? 'pass' : 'fail', 'Format incorrect');
+            } catch (e) {
+                updateResult('test-3-4', 'fail', e.message);
+            }
+
+            try {
+                const truncated = FormatUtils.truncate('a'.repeat(100), 50);
+                updateResult('test-3-5', truncated.includes('...') && truncated.length <= 53 ? 'pass' : 'fail', 'Troncature incorrecte');
+            } catch (e) {
+                updateResult('test-3-5', 'fail', e.message);
+            }
+
+            // Tests Storage
+            try {
+                StorageUtils.set('test-key', {data: 'test'});
+                updateResult('test-4-1', 'pass', '');
+            } catch (e) {
+                updateResult('test-4-1', 'fail', e.message);
+            }
+
+            try {
+                const data = StorageUtils.get('test-key');
+                updateResult('test-4-2', data && data.data === 'test' ? 'pass' : 'fail', 'Données incorrectes');
+            } catch (e) {
+                updateResult('test-4-2', 'fail', e.message);
+            }
+
+            try {
+                StorageUtils.remove('test-key');
+                const data = StorageUtils.get('test-key');
+                updateResult('test-4-3', data === null ? 'pass' : 'fail', 'Clé non supprimée');
+            } catch (e) {
+                updateResult('test-4-3', 'fail', e.message);
+            }
+        }
+
+        function clearResults() {
+            Object.keys(results).forEach(key => {
+                updateResult(key, 'pending', '');
+            });
+        }
+
+        // Initialiser
+        Object.keys(results).fill('pending');
+        document.querySelectorAll('[id^="test-"]').forEach(el => {
+            results[el.id] = 'pending';
+        });
+        updateStats();
+    </script>
+</body>
+</html>
