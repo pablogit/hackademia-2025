@@ -5,4 +5,5 @@ Repo pour le projet RefCheck de HackademIA 2025
 
 * pyPDF
 * scholarly 
+* pdf2bib : https://pypi.org/project/pdf2bib/
 
