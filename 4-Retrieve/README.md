@@ -49,3 +49,7 @@ page : $.result[PMID].pages
 volume : $.result[PMID].volume
 DOI : $.result[PMID].doi  -> si pas de DOI ce champs n'existe pas
 
+## dependencies to install 
+pip install requests xmltodict
+pip install bibtexparser
+to load : python retrieve.py
