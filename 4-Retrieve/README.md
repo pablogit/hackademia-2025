@@ -8,6 +8,10 @@ Repo pour le projet RefCheck de HackademIA 2025
 * ArXiv : ArXivID
 * OpenAlex : PID 
 
+## Librairies
+
+* https://github.com/fabiobatalha/crossrefapi
+
 ## CrossRef structure :
 DOI
 type
