@@ -28,3 +28,20 @@ URL
         DOI : $.message.DOI
 
 ## Arxives
+
+http://arxiv.org/abs/hep-ex/0307015   --> return XML, see after how to for a json
+
+
+
+## Pubmed
+https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=PMID&retmode=json
+example : https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=31452104&retmode=json
+
+titre : $.result[PMID].title
+auteur : $.result[PMID].authors[0].name
+journal : $.result[PMID].fulljournalname
+annee : $.result[PMID].pubdate
+page : $.result[PMID].pages
+volume : $.result[PMID].volume
+DOI : $.result[PMID].doi  -> si pas de DOI ce champs n'existe pas
+
