@@ -6,3 +6,12 @@ Repo pour le projet RefCheck de HackademIA 2025
 * pyPDF
 * scholarly 
 
+## CrossRef structure :
+DOI
+type
+publisher
+prefix
+container-title (nom du journal)
+volume, issue
+ISSN, issn-type
+URL
