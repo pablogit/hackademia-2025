@@ -1,0 +1,207 @@
+[
+  {
+    "original": {
+      "title": "An efficient numerical evaluation of the Green's function for the Helmholtz operator on periodic structures",
+      "authors": [
+        "Kirk E Jordan",
+        "Gerard R Richter",
+        "Ping Sheng"
+      ],
+      "year": 1986,
+      "journal": "Journal of Computational Physics",
+      "publisher": "Elsevier BV",
+      "volume": "63",
+      "issue": "1",
+      "pages": "222-235",
+      "doi": "10.1016/0021-9991(86)90093-8"
+    },
+    "trusted": {
+      "title": "An efficient numerical evaluation of the Green's function for the Helmholtz operator on periodic structures",
+      "authors": [
+        "Kirk E Jordan",
+        "Gerard R Richter",
+        "Ping Sheng"
+      ],
+      "year": 1986,
+      "journal": "Journal of Computational Physics",
+      "volume": "63",
+      "pages": "222-235",
+      "doi": "10.1016/0021-9991(86)90093-8"
+    },
+    "comparison_result": {
+      "final_score": 0.9673202614379085,
+      "per_field": {
+        "title": 1.0,
+        "authors": 1.0,
+        "year": 1.0,
+        "journal": 1.0,
+        "volume": 1.0,
+        "issue": 0.0,
+        "pages": 1.0,
+        "doi": 1.0
+      },
+      "weights": {
+        "title": 0.29411764705882354,
+        "authors": 0.22875816993464052,
+        "year": 0.06535947712418301,
+        "journal": 0.13071895424836602,
+        "volume": 0.05228758169934641,
+        "issue": 0.032679738562091505,
+        "pages": 0.032679738562091505,
+        "doi": 0.16339869281045752
+      },
+      "status": "OK",
+      "hallucination_score": 0.0326797385620915,
+      "reference_type": "article",
+      "original_title": "An efficient numerical evaluation of the Green's function for the Helmholtz operator on periodic structures"
+    }
+  },
+  {
+    "original": {
+      "title": "Coupled dipole method to compute optical torque: Application to a micropropeller",
+      "authors": [
+        "Patrick C. Chaumet",
+        "C. Billaudeau"
+      ],
+      "year": 2007,
+      "journal": "Journal of Applied Physics",
+      "publisher": "AIP Publishing",
+      "volume": "101",
+      "issue": "2",
+      "pages": "023106",
+      "doi": "10.1063/1.2409490"
+    },
+    "trusted": {
+      "title": "Coupled dipole method to compute optical torque: Application to a micropropeller",
+      "authors": [
+        "Patrick C. Chaumet",
+        "C. Billaudeau"
+      ],
+      "year": 2007,
+      "journal": "Journal of Applied Physics",
+      "volume": "101",
+      "doi": "10.1063/1.2409490"
+    },
+    "comparison_result": {
+      "final_score": 0.934640522875817,
+      "per_field": {
+        "title": 1.0,
+        "authors": 1.0,
+        "year": 1.0,
+        "journal": 1.0,
+        "volume": 1.0,
+        "issue": 0.0,
+        "pages": 0.0,
+        "doi": 1.0
+      },
+      "weights": {
+        "title": 0.29411764705882354,
+        "authors": 0.22875816993464052,
+        "year": 0.06535947712418301,
+        "journal": 0.13071895424836602,
+        "volume": 0.05228758169934641,
+        "issue": 0.032679738562091505,
+        "pages": 0.032679738562091505,
+        "doi": 0.16339869281045752
+      },
+      "status": "OK",
+      "hallucination_score": 0.065359477124183,
+      "reference_type": "article",
+      "original_title": "Coupled dipole method to compute optical torque: Application to a micropropeller"
+    }
+  },
+  {
+    "original": {
+      "title": "Observation of Gravitational Waves from a Binary Black Hole Merger",
+      "year": 2016,
+      "journal": "Physical Review Letters",
+      "publisher": "American Physical Society (APS)",
+      "volume": "116",
+      "issue": "6",
+      "doi": "10.1103/physrevlett.116.061102"
+    },
+    "trusted": {
+      "title": "Observation of Gravitational Waves from a Binary Black Hole Merger",
+      "authors": [
+        "B. P. Abbott",
+        "R. Abbott",
+        "T. D. Abbott"
+      ],
+      "year": 2016,
+      "journal": "Physical Review Letters",
+      "volume": "116",
+      "doi": "10.1103/physrevlett.116.061102"
+    },
+    "comparison_result": {
+      "final_score": 0.7058823529411765,
+      "per_field": {
+        "title": 1.0,
+        "authors": 0.0,
+        "year": 1.0,
+        "journal": 1.0,
+        "volume": 1.0,
+        "issue": 0.0,
+        "doi": 1.0
+      },
+      "weights": {
+        "title": 0.29411764705882354,
+        "authors": 0.22875816993464052,
+        "year": 0.06535947712418301,
+        "journal": 0.13071895424836602,
+        "volume": 0.05228758169934641,
+        "issue": 0.032679738562091505,
+        "pages": 0.032679738562091505,
+        "doi": 0.16339869281045752
+      },
+      "status": "WARNING",
+      "hallucination_score": 0.2941176470588235,
+      "reference_type": "article",
+      "original_title": "Observation of Gravitational Waves from a Binary Black Hole Merger"
+    }
+  },
+  {
+    "original": {
+      "title": "Quantum supremacy using a programmable superconducting processor",
+      "year": 2019,
+      "journal": "Nature",
+      "volume": "574",
+      "pages": "505-510",
+      "doi": "10.1038/s41586-019-1666-5"
+    },
+    "trusted": {
+      "title": "Quantum supremacy using a programmable superconducting processor",
+      "year": 2019,
+      "journal": "Nature",
+      "volume": "574",
+      "pages": "505-510",
+      "doi": "10.1038/s41586-019-1666-5"
+    },
+    "comparison_result": {
+      "final_score": 0.9673202614379085,
+      "per_field": {
+        "title": 1.0,
+        "authors": 1.0,
+        "year": 1.0,
+        "journal": 1.0,
+        "volume": 1.0,
+        "issue": 0.0,
+        "pages": 1.0,
+        "doi": 1.0
+      },
+      "weights": {
+        "title": 0.29411764705882354,
+        "authors": 0.22875816993464052,
+        "year": 0.06535947712418301,
+        "journal": 0.13071895424836602,
+        "volume": 0.05228758169934641,
+        "issue": 0.032679738562091505,
+        "pages": 0.032679738562091505,
+        "doi": 0.16339869281045752
+      },
+      "status": "OK",
+      "hallucination_score": 0.0326797385620915,
+      "reference_type": "article",
+      "original_title": "Quantum supremacy using a programmable superconducting processor"
+    }
+  }
+]
