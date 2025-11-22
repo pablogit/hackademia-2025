@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox, scrolledtext
 from pathlib import Path    
 import sys
-from extract_bibliography import extract_bibliography, convert_to_json_output
+from extract_bibliography import count_references
 
 
 class BibliographyExtractorApp:
@@ -20,7 +20,6 @@ class BibliographyExtractorApp:
         
         # Variables
         self.pdf_path = tk.StringVar()
-        self.references = []
         
         # Créer l'interface
         self.create_widgets()
@@ -59,19 +58,18 @@ class BibliographyExtractorApp:
         browse_btn = ttk.Button(file_frame, text="Parcourir...", command=self.browse_file)
         browse_btn.grid(row=0, column=2, padx=5)
         
-        ttk.Label(file_frame, text="Format de sortie: JSON", foreground="gray").grid(row=1, column=0, columnspan=3, pady=(5, 0))
         
-        # Bouton d'extraction
+        # Bouton d'extraction (comptage rapide)
         extract_btn = ttk.Button(
             main_frame, 
-            text="🚀 Extraire la Bibliographie", 
-            command=self.extract_bibliography,
+            text="🚀 Extraire la Bibliographie (JSON)", 
+            command=self.count_references_only,
             style="Accent.TButton"
         )
         extract_btn.grid(row=2, column=0, columnspan=3, padx=5, pady=10)
         
         # Section résultats
-        results_frame = ttk.LabelFrame(main_frame, text="2. Résultats (JSON)", padding="10")
+        results_frame = ttk.LabelFrame(main_frame, text="2. Résultats", padding="10")
         results_frame.grid(row=3, column=0, columnspan=3, sticky=(tk.W, tk.E, tk.N, tk.S), pady=5)
         results_frame.columnconfigure(0, weight=1)
         results_frame.rowconfigure(0, weight=1)
@@ -107,9 +105,9 @@ class BibliographyExtractorApp:
         )
         if filename:
             self.pdf_path.set(filename)
-            
-    def extract_bibliography(self):
-        """Extrait la bibliographie du PDF sélectionné."""
+    
+    def count_references_only(self):
+        """Compte rapidement le nombre de références sans extraire tout le document."""
         pdf_file = self.pdf_path.get()
         
         if not pdf_file:
@@ -123,52 +121,42 @@ class BibliographyExtractorApp:
         try:
             # Afficher un message de chargement
             self.results_text.delete(1.0, tk.END)
-            self.results_text.insert(tk.END, "⏳ Extraction en cours...\n")
+            self.results_text.insert(tk.END, "⏳ Comptage en cours...\n")
             self.results_text.update()
             
-            # Extraire les références
-            self.references = extract_bibliography(pdf_file)
+            # Compter les références rapidement
+            count = count_references(pdf_file)
             
-            if not self.references:
-                self.results_text.delete(1.0, tk.END)
-                self.results_text.insert(
-                    tk.END, 
-                    "⚠️ Aucune référence trouvée dans le document.\n\n"
-                    "Vérifiez que le PDF contient une section 'Bibliographie' ou 'Références'."
-                )
+            # Afficher le résultat
+            self.results_text.delete(1.0, tk.END)
+            
+            result = f"{'='*80}\n"
+            result += f"📊 NOMBRE DE RÉFÉRENCES BIBLIOGRAPHIQUES\n"
+            result += f"{'='*80}\n\n"
+            
+            if count == 0:
+                result += f"⚠️  Aucune référence trouvée dans le document.\n\n"
+                result += f"Vérifiez que le PDF contient une section 'Bibliographie' ou 'Références'.\n"
                 messagebox.showwarning(
                     "Aucune référence", 
                     "Aucune référence bibliographique n'a été trouvée dans le document."
                 )
-                return
+            else:
+                result += f"✅ Nombre total de références trouvées: {count}\n\n"
+                result += f"📄 Fichier analysé: {Path(pdf_file).name}\n"
+                result += f"📁 Chemin: {pdf_file}\n"
+                
+                messagebox.showinfo(
+                    "Résultat", 
+                    f"✅ {count} référence(s) trouvée(s) dans le document!"
+                )
             
-            # Convertir en JSON
-            json_output = convert_to_json_output(self.references)
-            
-            # Afficher les résultats
-            self.results_text.delete(1.0, tk.END)
-            
-            # En-tête avec statistiques
-            header = f"{'='*80}\n"
-            header += f"✅ {len(self.references)} référence(s) trouvée(s)\n"
-            header += f"Format: JSON\n"
-            header += f"{'='*80}\n\n"
-            
-            self.results_text.insert(tk.END, header)
-            self.results_text.insert(tk.END, json_output)
-            
-            # Scroll au début
-            self.results_text.see(1.0)
-            
-            messagebox.showinfo(
-                "Succès", 
-                f"✅ {len(self.references)} référence(s) extraite(s) avec succès!"
-            )
+            self.results_text.insert(tk.END, result)
             
         except FileNotFoundError:
             messagebox.showerror("Erreur", f"Le fichier '{pdf_file}' est introuvable.")
         except Exception as e:
-            error_msg = f"Erreur lors de l'extraction:\n{str(e)}"
+            error_msg = f"Erreur lors du comptage:\n{str(e)}"
             self.results_text.delete(1.0, tk.END)
             self.results_text.insert(tk.END, f"❌ {error_msg}")
             messagebox.showerror("Erreur", error_msg)
@@ -177,15 +165,14 @@ class BibliographyExtractorApp:
         """Enregistre les résultats dans un fichier."""
         content = self.results_text.get(1.0, tk.END)
         
-        if not content.strip() or "Extraction en cours" in content or "Aucune référence" in content:
+        if not content.strip() or "Comptage en cours" in content or (content.strip().startswith("⚠️") and len(content.strip()) < 100):
             messagebox.showwarning("Avertissement", "Aucun résultat à enregistrer.")
             return
         
         filename = filedialog.asksaveasfilename(
             title="Enregistrer les résultats",
-            defaultextension=".json",
+            defaultextension=".txt",
             filetypes=[
-                ("Fichiers JSON", "*.json"),
                 ("Fichiers texte", "*.txt"),
                 ("Tous les fichiers", "*.*")
             ]
@@ -202,7 +189,6 @@ class BibliographyExtractorApp:
     def clear_results(self):
         """Efface les résultats affichés."""
         self.results_text.delete(1.0, tk.END)
-        self.references = []
     
     def copy_results(self):
         """Copie les résultats dans le presse-papiers."""
