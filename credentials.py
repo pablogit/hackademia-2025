@@ -1,0 +1,3 @@
+googlekey = "YOUR_GOOGLE_API_KEY_HERE"
+hactarkey = "YOUR_HACTAR_API_KEY_HERE"
+deepseekkey = "YOUR_DEEPSEEK_API_KEY_HERE"
